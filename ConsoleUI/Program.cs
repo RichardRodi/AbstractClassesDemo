@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,21 +37,69 @@ namespace ConsoleUI
 
             // Create a list of Vehicle called vehicles
 
-            /*
-             * Create 4 instances: 1 Car, 1 Motorcycle, and then 2 instances of type Vehicle (use explicit typing) but use constuctors from derived classes
-             * 
-             * Set the properties values with object initializer syntax
-             */
 
-            /*
-             * Add the 4 vehicles to the list
-             * Using a foreach loop iterate through the list and display each of the properties
-             */
+            //*Create 4 instances: 1 Car, 1 Motorcycle, and then 2 instances of type Vehicle(use explicit typing) but use constuctors from derived classes
 
+            //* Set the properties values with object initializer syntax
+
+            Car myAudi = new Car
+            { Model = "A4",
+                Make = "Audi",
+                Year = 2021,
+                HasTrunk = true,
+            };
+
+            MotorCycle myMotorCycle = new MotorCycle
+            { Model = "Katana",
+                Make = "Suzuki",
+                Year = 2024,
+                HasSideCar = true,
+            };
+
+            Vehicle myVehicle1 = new Car
+            { Model = "Focus",
+            Make = "Ford",
+            Year = 2023,
+            };
+
+            Vehicle myVehicle2 = new MotorCycle
+            {
+                Model = "Tenere",
+                Make = "Yamaha",
+                Year = 2022,
+            };
+
+            // Create a list of Vehicle called vehicles
+            //*Add the 4 vehicles to the list
+
+            List<Vehicle> vehicles = new List<Vehicle> { myAudi, myMotorCycle, myVehicle1, myVehicle2 };
+
+
+            /* Using a foreach loop iterate through the list and display each of the properties
+            */
             // Call each of the drive methods for one car and one motorcycle
+            foreach (var automobile in vehicles )
+            {
+                Console.WriteLine($"{automobile.Year}\t{automobile.Make}\t{automobile.Model}\n");
+                
+                automobile.DriveAbstract();
+                automobile.DriveVirtual();
+             
+                    
+                if (automobile is MotorCycle motorCycle)
+                {
+                    Console.WriteLine($"This Vehicle has a Side Car: {motorCycle.HasSideCar}\n");
+                }
+                if (automobile is Car car)
+                {
+                    Console.WriteLine($"This Vehicle has a Trunk: {car.HasTrunk}\n");
+                }
+            }
 
-            #endregion            
+           
+
             Console.ReadLine();
         }
     }
 }
+#endregion
