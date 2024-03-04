@@ -96,8 +96,6 @@ namespace ConsoleUI
                 }
             }
 
-           
-
             Console.ReadLine();
         }
     }
